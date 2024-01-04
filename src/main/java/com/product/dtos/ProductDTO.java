@@ -5,10 +5,12 @@ import lombok.ToString;
 
 @Data
 @ToString
-public class AddProductDTO {
+public class ProductDTO {
+    private Long id;
     private String title;
     private String description;
-    private String imageUrl;
+    private String image;
     private double price;
     private String category;
+    private RatingDTO rating;
 }

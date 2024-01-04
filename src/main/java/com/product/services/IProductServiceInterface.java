@@ -1,17 +1,21 @@
 package com.product.services;
 
-import com.product.dtos.AddProductDTO;
+import com.product.dtos.CreateNewProductDTO;
+import com.product.dtos.UpdateProductDTO;
+import com.product.models.Product;
+
+import java.util.List;
 
 public interface IProductServiceInterface {
-    String getAllProducts();
+    List<Product> getAllProducts();
 
-    String getProductById(Long productId);
+    Product getProductById(Long productId);
 
-    String addProduct(AddProductDTO product);
+    Product addProduct(CreateNewProductDTO product);
 
-    String updateProduct(Long productId);
+    UpdateProductDTO updateProduct(Long productId, UpdateProductDTO product);
 
     String patchProduct(Long productId);
 
-    String deleteProduct(Long productId);
+    Product deleteProduct(Long productId);
 }
