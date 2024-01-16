@@ -1,8 +1,8 @@
 package com.product.controllers;
 
 import com.product.Exceptions.ProductNotFoundException;
+import com.product.clients.fakestore.dto.FakeStoreProductDto;
 import com.product.dtos.CreateNewProductDTO;
-import com.product.dtos.ProductDTO;
 import com.product.dtos.UpdateProductDTO;
 import com.product.models.Product;
 import com.product.services.IProductServiceInterface;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
 @RequestMapping("/products")
@@ -23,9 +22,9 @@ public class ProductController {
     }
 
     @GetMapping("")
-    public ResponseEntity<List<Product>> getAllProducts(){
+    public ResponseEntity<List<FakeStoreProductDto>> getAllProducts(){
         try{
-            List<Product> products=productService.getAllProducts();
+            List<FakeStoreProductDto> products=productService.getAllProducts();
             return ResponseEntity.ok(products);
         }catch (Exception e){
             throw new RuntimeException("Error Occurred while getting all products");
@@ -33,9 +32,9 @@ public class ProductController {
     }
 
     @GetMapping("/{productId}")
-    public ResponseEntity<Product> getProductById(@PathVariable("productId") Long productId) throws ProductNotFoundException {
+    public ResponseEntity<FakeStoreProductDto> getProductById(@PathVariable("productId") Long productId) throws ProductNotFoundException {
         try{
-            Product product = productService.getProductById(productId);
+            FakeStoreProductDto product = productService.getProductById(productId);
             return ResponseEntity.ok(product);
         }catch (Exception e){
             throw new ProductNotFoundException("Product with ID: "+productId+" Not Found");
@@ -43,9 +42,9 @@ public class ProductController {
     }
 
     @PostMapping()
-    public ResponseEntity<Product> addProduct(@RequestBody CreateNewProductDTO product){
+    public ResponseEntity<FakeStoreProductDto> addProduct(@RequestBody CreateNewProductDTO product){
         try{
-            Product newProduct = productService.addProduct(product);
+            FakeStoreProductDto newProduct = productService.addProduct(product);
             return ResponseEntity.ok(newProduct);
         }catch (Exception e){
             throw new RuntimeException("Error Occurred while adding new product");
@@ -68,7 +67,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/{productId}")
-    public Product deleteProduct(@PathVariable("productId") Long productId){
+    public FakeStoreProductDto deleteProduct(@PathVariable("productId") Long productId){
         try{
             return productService.deleteProduct(productId);
         }catch (Exception e){

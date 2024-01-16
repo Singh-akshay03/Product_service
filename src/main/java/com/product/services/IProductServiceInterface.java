@@ -1,21 +1,21 @@
 package com.product.services;
 
+import com.product.clients.fakestore.dto.FakeStoreProductDto;
 import com.product.dtos.CreateNewProductDTO;
 import com.product.dtos.UpdateProductDTO;
-import com.product.models.Product;
 
 import java.util.List;
 
 public interface IProductServiceInterface {
-    List<Product> getAllProducts();
+    List<FakeStoreProductDto> getAllProducts();
 
-    Product getProductById(Long productId);
+    FakeStoreProductDto getProductById(Long productId);
 
-    Product addProduct(CreateNewProductDTO product);
+    FakeStoreProductDto addProduct(CreateNewProductDTO product);
 
     UpdateProductDTO updateProduct(Long productId, UpdateProductDTO product);
 
     String patchProduct(Long productId);
 
-    Product deleteProduct(Long productId);
+    FakeStoreProductDto deleteProduct(Long productId);
 }
